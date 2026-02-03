@@ -4,6 +4,9 @@
 // found in the LICENSE file in the root of the source tree.
 //
 // Pro Filters for Trello (pf4t)
+// https://github.com/jordan2175/pf4t
+
+
 
 state.listSettings = state.listSettings || {};
 

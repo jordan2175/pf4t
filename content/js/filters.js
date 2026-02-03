@@ -4,24 +4,7 @@
 // found in the LICENSE file in the root of the source tree.
 //
 // Pro Filters for Trello (pf4t)
-
-
-
-
-
-// ==================================================
-// Pro Filters for Trello – filters.js
-// ==================================================
-//
-// This file is responsible ONLY for:
-//  - Tracking active filter selections
-//  - Showing / hiding cards based on filters
-//  - Rendering dropdowns with correct counts
-//  - Keeping dropdowns in sync with visible cards
-//
-// It does NOT parse cards or modify card HTML.
-// ==================================================
-
+// https://github.com/jordan2175/pf4t
 
 
 // --------------------------------------------------

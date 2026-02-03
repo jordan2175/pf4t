@@ -1,12 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Pro Filters for Trello",
-  "version": "1.0",
-  "description": "Parses Trello card titles for categories, tags, hashtags, and priorities.",
+  "version": "1.0.0",
+  "description": "Advanced card filtering, list width, and color controls for Trello.",
   "permissions": ["storage"],
   "web_accessible_resources": [
     {
-      "resources": ["content/lib/font-awesome/fonts/*", "content/lib/font-awesome/css/*"],
+      "resources": [
+        "content/lib/font-awesome/fonts/*"
+      ],
       "matches": ["https://trello.com/*"]
     }
   ],
