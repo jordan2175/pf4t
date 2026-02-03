@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Pro Filters for Trello",
+  "version": "1.0",
+  "description": "Parses Trello card titles for categories, tags, hashtags, and priorities.",
+  "permissions": ["storage"],
+  "web_accessible_resources": [
+    {
+      "resources": ["content/lib/font-awesome/fonts/*", "content/lib/font-awesome/css/*"],
+      "matches": ["https://trello.com/*"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://trello.com/b/*", "https://trello.com/c/*"],
+      "js": [
+        "content/js/main.js",
+        "content/js/parser.js",
+        "content/js/cards.js",
+        "content/js/filters.js",
+        "content/js/lists.js"
+      ],
+      "css": [
+        "content/lib/font-awesome/css/font-awesome.min.css",
+        "content/css/styles.css",
+        "content/css/filters.css",
+        "content/css/lists.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

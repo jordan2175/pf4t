@@ -1,0 +1,90 @@
+/* ---------------------------------------- */
+/* List Coloring                            */
+/* ---------------------------------------- */
+
+/* pf4t = Pro Filters for Trello */
+
+
+.pf4t-list-settings-popup {
+    position: fixed;
+    display: flex;
+    flex-direction: row; 
+    gap: 15px;                          /* Spacing between dropdown menus */
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    margin-top: 10px;
+    z-index: 100;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #6b808c !important;
+    float: right !important;
+    flex-wrap: wrap;
+}
+
+.pf4t-list-settings-button-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    gap: 15px;                          /* Spacing between dropdown menus */
+    padding: 1px 1px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    margin-top: 10px;
+    z-index: 100;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #6b808c !important;
+    float: right !important;
+    flex-wrap: wrap;
+}
+
+.pf4t-list-settings-apply-btn {
+    background: #0052CC; /* Trello Blue */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.pf4t-list-settings-apply-btn:hover {
+    background: #0065FF;
+}
+
+.pf4t-list-settings-reset-btn {
+    background: #DE350B; /* Trello Red */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.pf4t-list-settings-reset-btn:hover {
+    background: #FF5630;
+}
+
+.pf4t-list-settings-close-btn {
+    background: #7c7c7d; /* Trello Grey */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.pf4t-list-settings-close-btn:hover {
+    background: #EBECF0;
+}

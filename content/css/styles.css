@@ -1,0 +1,89 @@
+
+/* pf4t = Pro Filters for Trello */
+
+/* Remove the margin-bottom we added earlier since it's no longer blocking the view */
+#board {
+    margin-bottom: 0 !important;
+}
+
+/* Card Styles - Clean Title */
+.pf4t-parsed-title {
+    color: #172b4d !important;
+}
+
+/* Card Styles - Categories */
+.pf4t-style-category {
+    font-size: 0.85em;
+    font-weight: 800;
+    color: #000000;
+    background: rgba(0, 97, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px; /* rounded corners */
+    margin-right: 4px;
+    text-transform: uppercase;
+
+}
+
+/* Card Styles - Square Labels */
+.pf4t-style-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: dimgray;
+    background: #e8e8e8;
+    padding: 3px 5px;
+    border-radius: 4px; /* rounded corners */
+    margin: 4px 4px;
+    white-space: nowrap;
+    text-transform: lowercase;
+}
+
+/* Card Styles - Hashtags */
+.pf4t-style-hash { 
+    font-weight: 400;
+    color: #0079bf;
+}
+
+.pf4t-style-time { background: #ff9f1a; color: white; }
+
+
+/* Priority Card Icons and Borders */
+i.pf4t-style-priority-low  { font-size: 20px; font-weight: bold; color: #f1c40f; margin: 4px; }
+i.pf4t-style-priority-med  { font-size: 20px; font-weight: bold; color: #e67e22; margin: 4px; }
+i.pf4t-style-priority-high { font-size: 20px; font-weight: bold; color: #fc2305; margin: 4px; }
+
+/*[data-pf4t-priority="1"] { border-left: 5px solid #f1c40f; border-radius: 10px; } 
+[data-pf4t-priority="2"] { border-left: 5px solid #e67e22; border-radius: 10px; }
+[data-pf4t-priority="3"] { border-left: 5px solid #fc2305; border-radius: 10px; }*/
+
+
+
+/* The "Memory Database" CSS Trick */
+/* When a category is active, hide cards that don't have that category class */
+/*body[data-pf4t-filter] [data-testid="list-card"]:not(.placeholder) {
+    display: none !important;
+}*/
+
+
+/*@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(235, 90, 70, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(235, 90, 70, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(235, 90, 70, 0); }
+}*/
+
+
+
+/* Filtering Logic for multiple groups */
+/*body[data-filter-type="category"] [data-testid="list-card"]:not([data-pf4t-cat]),
+body[data-filter-type="label"] [data-testid="list-card"]:not([data-pf4t-label]),
+body[data-filter-type="hashtag"] [data-testid="list-card"]:not([data-pf4t-hash]) {
+    display: none !important;
+}*/
+
+/* Specific match logic */
+/*body[data-filter-val] [data-testid="list-card"] { display: none !important; }
+body[data-filter-val="Work"] [data-pf4t-cat="Work"],
+body[data-filter-val="Urgent"] [data-pf4t-label="Urgent"],
+body[data-filter-val="ASAP"] [data-pf4t-hash="ASAP"] {
+    display: block !important;
+}*/
+
