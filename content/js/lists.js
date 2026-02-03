@@ -41,6 +41,39 @@ function applyAllListSettings() {
     });
 }
 
+
+function makeDraggable(popup, handle) {
+    let isDragging = false;
+    let startX, startY, startLeft, startTop;
+
+    handle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+
+        const rect = popup.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+
+        document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        popup.style.left = `${startLeft + dx}px`;
+        popup.style.top = `${startTop + dy}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.body.style.userSelect = '';
+    });
+}
+
 // -----------------------------
 // Show List Settings Popup
 // -----------------------------
@@ -55,9 +88,7 @@ function showListSettingsPopup() {
     const popup = document.createElement('div');
     popup.className = 'pf4t-list-settings-popup';
     // popup.style.position = 'fixed';
-    popup.style.top = '100px';
-    popup.style.left = '50%';
-    popup.style.transform = 'translateX(-50%)';
+    // popup.style.transform = 'translateX(-50%)';
     // popup.style.background = '#fff';
     // popup.style.border = '1px solid #ccc';
     // popup.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
@@ -66,27 +97,28 @@ function showListSettingsPopup() {
 
     // Title
     const title = document.createElement('strong');
-    title.innerText = 'List Colors';
-    title.style.display = 'block';
-    title.style.marginBottom = '10px';
+    title.innerText = 'List Settings';
+    title.className = 'pf4t-list-settings-label'
     popup.appendChild(title);
+
+    popup.style.left = '50%';
+    popup.style.top = '100px';
+    makeDraggable(popup, title);
 
     // -----------------------------
     // Dropdown for list names
     // -----------------------------
     const listSelect = document.createElement('select');
-    listSelect.style.width = '100%';
-    listSelect.style.marginBottom = '10px';
+    listSelect.className = 'pf4t-list-settings-fields';
     popup.appendChild(listSelect);
 
     // -----------------------------
     // Width input
     // -----------------------------
     const widthInput = document.createElement('input');
+    widthInput.className = 'pf4t-list-settings-txtfields';
     widthInput.type = 'number';
     widthInput.placeholder = 'Width px';
-    widthInput.style.width = '100%';
-    widthInput.style.marginBottom = '10px';
     popup.appendChild(widthInput);
 
     // -----------------------------
@@ -94,14 +126,14 @@ function showListSettingsPopup() {
     // -----------------------------
     const colors = ['#ffffff','#ff9999','#99ff99','#9999ff','#ffff99','#ff99ff','#99ffff','#cccccc'];
     const colorContainer = document.createElement('div');
+    colorContainer.className = 'pf4t-list-settings-fields';
     colorContainer.style.display = 'flex';
     colorContainer.style.flexWrap = 'wrap';
-    colorContainer.style.marginBottom = '10px';
     colors.forEach(c => {
         const btn = document.createElement('div');
         btn.style.background = c;
-        btn.style.width = '25px';
-        btn.style.height = '25px';
+        btn.style.width = '20px';
+        btn.style.height = '20px';
         btn.style.margin = '2px';
         btn.style.cursor = 'pointer';
         btn.style.border = '1px solid #888';
@@ -118,18 +150,16 @@ function showListSettingsPopup() {
     // -----------------------------
     const colorInput = document.createElement('input');
     colorInput.type = 'color';
-    colorInput.style.width = '100%';
-    colorInput.style.marginBottom = '10px';
+    colorInput.className = 'pf4t-list-settings-fields';
     popup.appendChild(colorInput);
 
     // -----------------------------
     // RGB manual input
     // -----------------------------
     const rgbInput = document.createElement('input');
+    rgbInput.className = 'pf4t-list-settings-txtfields';
     rgbInput.type = 'text';
-    rgbInput.placeholder = 'RGB e.g. 255,0,0 or #ff0000';
-    rgbInput.style.width = '100%';
-    rgbInput.style.marginBottom = '10px';
+    rgbInput.placeholder = '255,0,0 or #ff0000';
     popup.appendChild(rgbInput);
 
     // -----------------------------

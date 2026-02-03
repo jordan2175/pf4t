@@ -7,10 +7,9 @@
 
 .pf4t-list-settings-popup {
     position: fixed;
-    display: flex;
-    flex-direction: row; 
-    gap: 15px;                          /* Spacing between dropdown menus */
-    padding: 15px;
+    width: 205px;
+    gap: 25px;
+    padding: 5px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     border-radius: 5px;
@@ -19,12 +18,31 @@
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #6b808c !important;
-    float: right !important;
-    flex-wrap: wrap;
+/*    float: right !important;
+    flex-wrap: wrap;*/
+}
+
+.pf4t-list-settings-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: move;
+    user-select: none;
+}
+
+.pf4t-list-settings-fields {
+    width: 205px;
+    margin-bottom: 5px;
+}
+
+.pf4t-list-settings-txtfields {
+    width: 197px;
+    margin-bottom: 5px;
 }
 
 .pf4t-list-settings-button-bar {
     position: relative;
+    min-width: 190px;
     display: flex;
     flex-direction: row; 
     gap: 15px;                          /* Spacing between dropdown menus */
@@ -32,13 +50,13 @@
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 5px;
-    margin-top: 10px;
-    z-index: 100;
+    margin: 0px;
+    /*z-index: 100;*/
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #6b808c !important;
-    float: right !important;
-    flex-wrap: wrap;
+    /*float: right !important;*/
+    /*flex-wrap: wrap;*/
 }
 
 .pf4t-list-settings-apply-btn {
@@ -51,6 +69,9 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .pf4t-list-settings-apply-btn:hover {
@@ -67,6 +88,8 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .pf4t-list-settings-reset-btn:hover {
@@ -83,6 +106,9 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .pf4t-list-settings-close-btn:hover {
