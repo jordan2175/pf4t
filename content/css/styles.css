@@ -12,8 +12,9 @@
 
 /* Card Styles - Categories */
 .pf4t-style-category {
-    font-size: 0.85em;
+    font-size: 14px;
     font-weight: 800;
+    letter-spacing: 0.03rem;
     color: #000000;
     background: rgba(0, 97, 255, 0.1);
     padding: 2px 6px;
@@ -24,8 +25,8 @@
 }
 
 /* Card Styles - Square Labels */
-.pf4t-style-label {
-    font-size: 14px;
+.pf4t-style-slabel {
+    font-size: 12px;
     font-weight: bold;
     color: dimgray;
     background: #e8e8e8;
@@ -33,7 +34,31 @@
     border-radius: 4px; /* rounded corners */
     margin: 4px 4px;
     white-space: nowrap;
-    text-transform: lowercase;
+    text-transform: uppercase;
+}
+
+.pf4t-style-clabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: dimgray;
+    background: #fad46b;
+    padding: 3px 5px;
+    border-radius: 4px; /* rounded corners */
+    margin: 4px 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.pf4t-style-blabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: dimgray;
+    background: #9dfcf9;
+    padding: 3px 5px;
+    border-radius: 4px; /* rounded corners */
+    margin: 4px 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
 }
 
 /* Card Styles - Hashtags */

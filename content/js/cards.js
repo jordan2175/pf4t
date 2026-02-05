@@ -21,11 +21,11 @@ function processCard(fullTrelloCard) {
     // Add elements from the parsed title to the DOM so that it can be looked up
     // and used later when we are doing the filtering.
     if (cardContainer) {
-        cardContainer.dataset.pf4tCategory      = parsedTitle.sCategory.toLowerCase();
-        cardContainer.dataset.pf4tSquareLabels  = parsedTitle.aSquareLabels.map(v => v.toLowerCase()).join(",");
-        cardContainer.dataset.pf4tCurlyLabels   = parsedTitle.aCurlyLabels.map(v => v.toLowerCase()).join(",");
-        cardContainer.dataset.pf4tBarLabels     = parsedTitle.aBarLabels.map(v => v.toLowerCase()).join(",");
-        cardContainer.dataset.pf4tHashTags      = parsedTitle.aHashTags.map(v => v.toLowerCase()).join(",");
+        cardContainer.dataset.pf4tCategory      = parsedTitle.sCategory.toUpperCase();
+        cardContainer.dataset.pf4tSquareLabels  = parsedTitle.aSquareLabels.map(v => v.toUpperCase()).join(",");
+        cardContainer.dataset.pf4tCurlyLabels   = parsedTitle.aCurlyLabels.map(v => v.toUpperCase()).join(",");
+        cardContainer.dataset.pf4tBarLabels     = parsedTitle.aBarLabels.map(v => v.toUpperCase()).join(",");
+        cardContainer.dataset.pf4tHashTags      = parsedTitle.aHashTags.map(v => v.toUpperCase()).join(",");
         cardContainer.dataset.pf4tPriorityLevel =
           parsedTitle.iPriorityLevel ? parsedTitle.iPriorityLevel.toString() : "";
     }
@@ -58,17 +58,17 @@ function updateCardUI(fullTrelloCard, parsedTitleData) {
  
     // Square Labels [something]
     parsedTitleData.aSquareLabels.forEach(slabel => {
-        html += `<span><i class="fa fa-tag pf4t-style-label"> ${slabel}</i></span>`;
+        html += `<span><i class="fa fa-tag pf4t-style-slabel"> ${slabel}</i></span>`;
     });
 
     // Curly Labels {something}
     parsedTitleData.aCurlyLabels.forEach(clabel => {
-        html += `<span class="pf4t-style-time">${clabel}</span>`;
+        html += `<span><i class="fa fa-tag pf4t-style-clabel"> ${clabel}</i></span>`;
     });
 
     // Bar Labels {something}
     parsedTitleData.aBarLabels.forEach(blabel => {
-        html += `<span class="pf4t-style-time">${blabel}</span>`;
+        html += `<span><i class="fa fa-tag pf4t-style-blabel"> ${blabel}</i></span>`;
     });
 
     // Add Priority Icon

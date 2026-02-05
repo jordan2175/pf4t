@@ -17,10 +17,45 @@ let state = {
 };
 
 const observer = new MutationObserver((mutations) => {
+    // Temporarily disconnect to prevent infinite loops
+    observer.disconnect();
+    
+    mutations.forEach(mutation => {
+        // Get the element (text nodes don't have .closest)
+        const target = mutation.target.nodeType === Node.TEXT_NODE 
+            ? mutation.target.parentElement 
+            : mutation.target;
+        
+        if (target) {
+            const cardName = target.closest('[data-testid="card-name"]');
+            if (cardName) {
+                // Only re-process if this is NOT already our processed content
+                if (!cardName.querySelector('.pf4t-parsed-title')) {
+                    cardName.removeAttribute('data-pf4t-processed');
+                    processCard(cardName);
+                }
+            }
+        }
+    });
+    
+    // Also catch any new cards
     document.querySelectorAll('[data-testid="card-name"]').forEach(card => processCard(card));
+    
+    // Reconnect the observer
+    observer.observe(document.body, { 
+        childList: true, 
+        subtree: true,
+        characterData: true,
+        characterDataOldValue: true
+    });
 });
 
-observer.observe(document.body, { childList: true, subtree: true });
+observer.observe(document.body, { 
+    childList: true, 
+    subtree: true,
+    characterData: true,  // watches for text changes
+    characterDataOldValue: true  // helpful for debugging
+});
 
 
 // Initial run for cards already on screen
