@@ -17,45 +17,48 @@ let state = {
 };
 
 const observer = new MutationObserver((mutations) => {
-    // Temporarily disconnect to prevent infinite loops
-    observer.disconnect();
+    // Collect unique cards to process (avoid duplicates)
+    const cardsToProcess = new Set();
     
     mutations.forEach(mutation => {
-        // Get the element (text nodes don't have .closest)
         const target = mutation.target.nodeType === Node.TEXT_NODE 
             ? mutation.target.parentElement 
             : mutation.target;
         
         if (target) {
             const cardName = target.closest('[data-testid="card-name"]');
-            if (cardName) {
-                // Only re-process if this is NOT already our processed content
-                if (!cardName.querySelector('.pf4t-parsed-title')) {
-                    cardName.removeAttribute('data-pf4t-processed');
-                    processCard(cardName);
-                }
+            if (cardName && !cardName.querySelector('.pf4t-parsed-title')) {
+                cardsToProcess.add(cardName);
             }
         }
     });
     
-    // Also catch any new cards
+    // Temporarily disconnect to prevent infinite loops
+    observer.disconnect();
+    
+    // Process unique cards only
+    cardsToProcess.forEach(card => {
+        card.removeAttribute('data-pf4t-processed');
+        processCard(card);
+    });
+    
+    // Catch any new cards
     document.querySelectorAll('[data-testid="card-name"]').forEach(card => processCard(card));
     
     // Reconnect the observer
     observer.observe(document.body, { 
         childList: true, 
         subtree: true,
-        characterData: true,
-        characterDataOldValue: true
+        characterData: true
     });
 });
 
 observer.observe(document.body, { 
     childList: true, 
     subtree: true,
-    characterData: true,  // watches for text changes
-    characterDataOldValue: true  // helpful for debugging
+    characterData: true
 });
+
 
 
 // Initial run for cards already on screen
@@ -70,4 +73,4 @@ setInterval(() => {
         console.log("Re-injecting Filter Bar...");
         updateFilterBar();
     }
-}, 3000); // Checks every 3 seconds
+}, 5000); // Checks every 5 seconds

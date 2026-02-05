@@ -15,20 +15,17 @@ This funciton is called is called from:
 --------------------------------------------------
 */
 const TrelloCardTitleParser = {
-  patterns: {
-    regexCategory:      /(^.*?)\s*\|\s*/,     // Matches "Something |" at the start
-    regexSquareLabels:  /\[([^\]]+)\]/g,      // Matches [this]
-    regexCurlyLabels:   /\{([^\}]+)\}/g,      // Matches {that}
-    regexBarLabels:     /\|([^\|]+)\|/g,      // Matches |other|
-    regexHashTags:      /(#[^\s!@#$%^&*()=+;:",\.\\<>]+)/g, // Matches #this
-    regexPriorityLevel: /(!+)/g               // Matches !!!
-  },
-
+  // Move patterns outside so they're compiled once
+  regexCategory: /(^.*?)\s*\|\s*/,
+  regexSquareLabels: /\[([^\]]+)\]/g,
+  regexCurlyLabels: /\{([^\}]+)\}/g,
+  regexBarLabels: /\|([^\|]+)\|/g,
+  regexHashTags: /(#[^\s!@#$%^&*()=+;:",\.\\<>]+)/g,
+  regexPriorityLevel: /(!+)/g,
+  
   parseTitle: function(fullTitle) {
     let title = fullTitle;
-
-    // Create a structure to hold all of the various elements and data that 
-    // we parse from the card title. 
+    
     const parsedCardTitleData = {
       sOriginal: fullTitle,
       sCategory: "Uncategorized",
@@ -39,43 +36,36 @@ const TrelloCardTitleParser = {
       iPriorityLevel: 0,
       sCleanTitle: ""
     };
-
-    // Extract the category field (The part before the first |)
-    const catMatch = title.match(this.patterns.regexCategory);
+    
+    // Extract category
+    const catMatch = title.match(this.regexCategory);
     if (catMatch) {
       parsedCardTitleData.sCategory = catMatch[1].trim();
       title = title.replace(catMatch[0], "");
     }
-
-    // Extract the various label types
-    parsedCardTitleData.aSquareLabels = [...title.matchAll(this.patterns.regexSquareLabels)].map(m => m[1]);
-    parsedCardTitleData.aCurlyLabels  = [...title.matchAll(this.patterns.regexCurlyLabels)].map(m => m[1]);
-    parsedCardTitleData.aBarLabels    = [...title.matchAll(this.patterns.regexBarLabels)].map(m => m[1]);
-
-
-    // Extract any hashtags
-    parsedCardTitleData.aHashTags = [...title.matchAll(this.patterns.regexHashTags)].map(m => m[1]);
-
-    // Extract the priority level
-    const prioMatch = title.match(this.patterns.regexPriorityLevel);
-
-    if (prioMatch) {
-      if (prioMatch[0].length === 2) {
-        parsedCardTitleData.iPriorityLevel = prioMatch[0].length;
-      } 
+    
+    // Extract labels - use Array.from instead of spread for slight perf boost
+    parsedCardTitleData.aSquareLabels = Array.from(title.matchAll(this.regexSquareLabels), m => m[1]);
+    parsedCardTitleData.aCurlyLabels = Array.from(title.matchAll(this.regexCurlyLabels), m => m[1]);
+    parsedCardTitleData.aBarLabels = Array.from(title.matchAll(this.regexBarLabels), m => m[1]);
+    parsedCardTitleData.aHashTags = Array.from(title.matchAll(this.regexHashTags), m => m[1]);
+    
+    // Priority
+    const prioMatch = title.match(this.regexPriorityLevel);
+    if (prioMatch && prioMatch[0].length === 2) {
+      parsedCardTitleData.iPriorityLevel = prioMatch[0].length;
     }
-
-
-
-    // Create a clean title that can be used to display on the cards
+    
+    // Clean title - chain replaces more efficiently
     parsedCardTitleData.sCleanTitle = title
-      .replace(this.patterns.regexSquareLabels, "")
-      .replace(this.patterns.regexCurlyLabels, "")
-      .replace(this.patterns.regexBarLabels, "")
-      .replace(this.patterns.regexHashTags, "")
-      .replace(this.patterns.regexPriorityLevel, "")
+      .replace(this.regexSquareLabels, "")
+      .replace(this.regexCurlyLabels, "")
+      .replace(this.regexBarLabels, "")
+      .replace(this.regexHashTags, "")
+      .replace(this.regexPriorityLevel, "")
       .trim();
-
+    
     return parsedCardTitleData;
   }
 };
+

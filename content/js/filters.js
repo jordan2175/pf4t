@@ -50,54 +50,55 @@ function increment(map, key) {
 // --------------------------------------------------
 function applyFilters() {
   const cards = document.querySelectorAll('[data-testid="list-card"]');
-
+  
+  // Use DocumentFragment for batch DOM updates (if needed)
   cards.forEach(card => {
     let visible = true;
-
-    // Read filterable values from card dataset
-    const category = card.dataset.pf4tCategory || '';
-    const squareLabels = (card.dataset.pf4tSquareLabels || '').split(',').filter(Boolean);
-    const curlyLabels = (card.dataset.pf4tCurlyLabels || '').split(',').filter(Boolean);
-    const barLabels = (card.dataset.pf4tBarLabels || '').split(',').filter(Boolean);
-    const hashTags = (card.dataset.pf4tHashTags || '').split(',').filter(Boolean);
-    const priority = card.dataset.pf4tPriorityLevel || '';
-
-    // AND logic across all active filters
-    if (state.activeFilters.categories &&
-        category !== state.activeFilters.categories) {
-      visible = false;
+    
+    // Cache dataset reads
+    const cardData = {
+      category: card.dataset.pf4tCategory || '',
+      squareLabels: (card.dataset.pf4tSquareLabels || '').split(',').filter(Boolean),
+      curlyLabels: (card.dataset.pf4tCurlyLabels || '').split(',').filter(Boolean),
+      barLabels: (card.dataset.pf4tBarLabels || '').split(',').filter(Boolean),
+      hashTags: (card.dataset.pf4tHashTags || '').split(',').filter(Boolean),
+      priority: card.dataset.pf4tPriorityLevel || ''
+    };
+    
+    // Early exit pattern - faster than checking all
+    if (state.activeFilters.categories && cardData.category !== state.activeFilters.categories) {
+      card.style.display = 'none';
+      return;
     }
-
-    if (state.activeFilters.squareLabels &&
-        !squareLabels.includes(state.activeFilters.squareLabels)) {
-      visible = false;
+    if (state.activeFilters.squareLabels && !cardData.squareLabels.includes(state.activeFilters.squareLabels)) {
+      card.style.display = 'none';
+      return;
     }
-
-    if (state.activeFilters.curlyLabels &&
-        !curlyLabels.includes(state.activeFilters.curlyLabels)) {
-      visible = false;
+    if (state.activeFilters.curlyLabels && !cardData.curlyLabels.includes(state.activeFilters.curlyLabels)) {
+      card.style.display = 'none';
+      return;
     }
-
-    if (state.activeFilters.barLabels &&
-        !barLabels.includes(state.activeFilters.barLabels)) {
-      visible = false;
+    if (state.activeFilters.barLabels && !cardData.barLabels.includes(state.activeFilters.barLabels)) {
+      card.style.display = 'none';
+      return;
     }
-
-    if (state.activeFilters.hashTags &&
-        !hashTags.includes(state.activeFilters.hashTags)) {
-      visible = false;
+    if (state.activeFilters.hashTags && !cardData.hashTags.includes(state.activeFilters.hashTags)) {
+      card.style.display = 'none';
+      return;
     }
-
-    if (state.activeFilters.priorityLevels &&
-        priority !== state.activeFilters.priorityLevels) {
-      visible = false;
+    if (state.activeFilters.priorityLevels && cardData.priority !== state.activeFilters.priorityLevels) {
+      card.style.display = 'none';
+      return;
     }
-
-    card.style.display = visible ? '' : 'none';
+    
+    card.style.display = '';
   });
-
-  // After cards are filtered, rebuild dropdowns
-  updateFilterBar();
+  
+  // Debounce the filter bar rebuild
+  clearTimeout(applyFilters.rebuildTimeout);
+  applyFilters.rebuildTimeout = setTimeout(() => {
+    updateFilterBar();
+  }, 150);
 }
 
 

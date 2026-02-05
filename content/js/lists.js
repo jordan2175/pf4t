@@ -288,22 +288,25 @@ function showListSettingsPopup() {
     };
 
     populateDropdown();
-    setInterval(populateDropdown, 2000); // update if new lists appear
+    setInterval(populateDropdown, 3000); // update if new lists appear
 
     document.body.appendChild(popup);
 
     // Close popup when clicking outside
-    setTimeout(() => {
-        document.addEventListener('click', function onClickOutside(e) {
-            if (!popup.contains(e.target)) {
-                popup.remove();
-                document.removeEventListener('click', onClickOutside);
-            }
-        });
-    }, 10);
+    function handleClickOutside(e) {
+        if (!popup.contains(e.target)) {
+            popup.remove();
+            document.removeEventListener('click', handleClickOutside);
+        }
+    }
+
+    // Small delay to prevent immediate close
+    requestAnimationFrame(() => {
+        document.addEventListener('click', handleClickOutside);
+    });
 }
 
 // -----------------------------
 // Apply saved settings periodically
 // -----------------------------
-setInterval(applyAllListSettings, 2000);
+setInterval(applyAllListSettings, 3000);
