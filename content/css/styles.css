@@ -16,7 +16,7 @@
     font-weight: 800;
     letter-spacing: 0.03rem;
     color: #000000;
-    background: rgba(0, 97, 255, 0.1);
+    background: rgba(204, 229, 255, 0.3);
     padding: 2px 6px;
     border-radius: 4px; /* rounded corners */
     margin-right: 4px;
@@ -28,37 +28,37 @@
 .pf4t-style-slabel {
     font-size: 12px;
     font-weight: bold;
-    color: dimgray;
-    background: #e8e8e8;
+    color: #404040;
+    background: #E0E0E0;
     padding: 3px 5px;
     border-radius: 4px; /* rounded corners */
     margin: 4px 4px;
     white-space: nowrap;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .pf4t-style-clabel {
     font-size: 12px;
     font-weight: bold;
-    color: dimgray;
-    background: #fad46b;
+    color: #404040;
+    background: #E5FFCC;
     padding: 3px 5px;
     border-radius: 4px; /* rounded corners */
     margin: 4px 4px;
     white-space: nowrap;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .pf4t-style-blabel {
     font-size: 12px;
     font-weight: bold;
-    color: dimgray;
-    background: #9dfcf9;
+    color: #404040;
+    background: #CCFFFF;
     padding: 3px 5px;
     border-radius: 4px; /* rounded corners */
     margin: 4px 4px;
     white-space: nowrap;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 /* Card Styles - Hashtags */
