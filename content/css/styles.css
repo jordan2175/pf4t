@@ -1,0 +1,138 @@
+/* pf4t = Pro Filters for Trello */
+
+
+#board {
+    margin-bottom: 0 !important;
+}
+
+/* Card Styles - Clean Title */
+.pf4t-parsed-title {
+    color: #172b4d !important;
+}
+
+/* Card Styles - Categories */
+.pf4t-style-category {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.03rem;
+    color: #000000;
+    background: rgba(204, 229, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px; /* rounded corners */
+    margin-right: 4px;
+    text-transform: uppercase;
+
+}
+
+/* Card Styles - Square Labels */
+.pf4t-style-slabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #404040;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 4px;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+/* Card Styles - Curly Labels */
+.pf4t-style-clabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #404040;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 4px;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+/* Card Styles - Bar Labels */
+.pf4t-style-blabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #404040;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 4px;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+/* Card Styles - Hashtags */
+.pf4t-style-hash { 
+    font-weight: 400;
+    color: #0079bf;
+}
+
+.pf4t-style-time { background: #ff9f1a; color: white; }
+
+
+/* Priority Card Icons and Borders */
+i.pf4t-style-priority-low,
+i.pf4t-style-priority-med,
+i.pf4t-style-priority-high { 
+    font-size: 20px; 
+    font-weight: bold; 
+    margin: 4px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+}
+i.pf4t-style-priority-low  { color: #f1c40f; }
+i.pf4t-style-priority-med  { color: #e67e22; }
+i.pf4t-style-priority-high { color: #fc2305; }
+
+/* Time/Costs/Points */
+i.pf4t-style-time,
+i.pf4t-style-costs,
+i.pf4t-style-points {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 4px;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+}
+i.pf4t-style-time   { color: darkblue; background: none; }
+i.pf4t-style-costs  { color: green; }
+i.pf4t-style-points { color: #3498db; }
+
+
+/* Base card priority setup */
+[data-pf4t-priority-level] {
+    position: relative;
+}
+
+/* Only apply to cards that have a non-empty priority level */
+[data-pf4t-priority-level="1"]::before,
+[data-pf4t-priority-level="2"]::before,
+[data-pf4t-priority-level="3"]::before {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 40px 40px 0;
+    z-index: 10;
+    filter: drop-shadow(-2px 2px 3px rgba(0,0,0,0.3));
+}
+
+[data-pf4t-priority-level="1"]::before {
+    border-color: transparent #f1c40f transparent transparent;
+}
+
+[data-pf4t-priority-level="2"]::before {
+    border-color: transparent #e67e22 transparent transparent;
+}
+
+[data-pf4t-priority-level="3"]::before {
+    border-color: transparent #fc2305 transparent transparent;
+}
+

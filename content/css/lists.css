@@ -1,0 +1,146 @@
+/* pf4t = Pro Filters for Trello */
+
+
+.pf4t-settings-popup {
+    position: fixed;
+    width: 250px; /* was 205 */
+    gap: 25px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    margin-top: 10px;
+    z-index: 100;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #6b808c !important;
+}
+
+.pf4t-settings-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: move;
+    user-select: none;
+}
+
+.pf4t-settings-fields {
+    width: 250px;
+    margin-bottom: 5px;
+}
+
+.pf4t-settings-txtfields {
+    width: 242px;
+    margin-bottom: 5px;
+}
+
+.pf4t-settings-button-bar {
+    position: relative;
+    min-width: 235px;
+    display: flex;
+    flex-direction: row; 
+    gap: 15px;                          /* Spacing between dropdown menus */
+    padding: 1px 1px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    margin: 0px;
+    /*z-index: 100;*/
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #6b808c !important;
+    /*float: right !important;*/
+    /*flex-wrap: wrap;*/
+}
+
+.pf4t-settings-apply-btn {
+    background: #0052CC; /* Trello Blue */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.pf4t-settings-apply-btn:hover {
+    background: #0065FF;
+}
+
+.pf4t-settings-reset-btn {
+    background: #DE350B; /* Trello Red */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pf4t-settings-reset-btn:hover {
+    background: #FF5630;
+}
+
+.pf4t-settings-close-btn {
+    background: #7c7c7d; /* Trello Grey */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;  /* height, width */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.pf4t-settings-close-btn:hover {
+    background: #EBECF0;
+}
+
+.pf4t-tab-bar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.pf4t-tab-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: #999;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pf4t-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.pf4t-tab-btn.pf4t-tab-active {
+    background: #0052CC;
+    color: white;
+    border-color: #0052CC;
+}
+
+.pf4t-tab-content {
+    display: none;
+}
+
+.pf4t-tab-content.pf4t-tab-active {
+    display: block;
+}
