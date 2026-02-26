@@ -43,6 +43,8 @@ things.
 
 If you like this plugin, please consider donating, even just a $1.00.
 
+- https://www.paypal.com/donate/?hosted_button_id=HR3Q95ZT56GVE
+
 
 ## Privacy Policy
 
